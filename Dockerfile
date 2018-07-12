@@ -21,10 +21,10 @@ RUN git clone https://github.com/kaldi-asr/kaldi.git && \
 
 WORKDIR /usr/local/kaldi/tools
 RUN extras/check_dependencies.sh
-RUN make -j $CPU_CORE && \
-  find . -type f \( -not -name '*.so' -and -not -name '*.so*' \) -delete
+RUN make -j $CPU_CORE
 
 WORKDIR /usr/local/kaldi/src
 RUN ./configure && make depend -j $CPU_CORE && make -j $CPU_CORE
-RUN find . -not -executable -type f -delete
+RUN find . -not -executable -type f -delete \
+  find . -type f \( -not -name '*.so' -and -not -name '*.so*' \) -delete
 
