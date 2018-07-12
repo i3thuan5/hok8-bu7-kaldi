@@ -16,7 +16,7 @@ RUN \
 WORKDIR /usr/local/
 # Use the newest kaldi version
 RUN git clone https://github.com/kaldi-asr/kaldi.git && \
-  rm kaldi/.git
+  rm -rf kaldi/.git
 
 
 WORKDIR /usr/local/kaldi/tools
