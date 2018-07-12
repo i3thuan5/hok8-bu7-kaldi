@@ -1,6 +1,6 @@
-FROM ubuntu:latest
+FROM ubuntu:16.04
 
-MAINTAINER sih4sing5hong5
+MAINTAINER i3thuan5
 
 ENV CPU_CORE 4
 
@@ -15,7 +15,8 @@ RUN \
 
 WORKDIR /usr/local/
 # Use the newest kaldi version
-RUN git clone https://github.com/kaldi-asr/kaldi.git
+RUN git clone https://github.com/kaldi-asr/kaldi.git \
+  rm kaldi/.git
 
 
 WORKDIR /usr/local/kaldi/tools
