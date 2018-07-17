@@ -14,17 +14,15 @@ RUN \
 
 
 WORKDIR /usr/local/
-# Use the newest kaldi version
-RUN git clone https://github.com/kaldi-asr/kaldi.git && \
-  rm -rf kaldi/.git
-
-
-WORKDIR /usr/local/kaldi/tools
-RUN extras/check_dependencies.sh
-RUN make -j $CPU_CORE
-
-WORKDIR /usr/local/kaldi/src
-RUN ./configure && make depend -j $CPU_CORE && make -j $CPU_CORE
-RUN find . -not -executable -type f -delete \
-  find . -type f \( -not -name '*.so' -and -not -name '*.so*' \) -delete
+RUN git clone https://github.com/sih4sing5hong5/kaldi.git && \
+  cd /usr/local/kaldi/tools && \
+  extras/check_dependencies.sh && \
+  make -j $CPU_CORE && \
+  \
+  cd /usr/local/kaldi/src && \
+  ./configure && make depend -j $CPU_CORE && make -j $CPU_CORE && \
+  \
+  rm -rf /usr/local/kaldi/.git && \
+  find /usr/local/kaldi/tools -type f \( -not -name '*.so' -and -not -name '*.so*' \) -delete && \
+  find /usr/local/kaldi/src -not -executable -type f -delete
 
